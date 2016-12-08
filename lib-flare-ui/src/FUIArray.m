@@ -52,8 +52,6 @@
 }
 
 - (id)removeObjectAtIndex:(size_t)index {
-        // Should shift objects
-
         if (index >= elem_count) {
                 // TODO: Raise exception
                 fprintf(stderr, "[WARNING]: Accessing elements beyond array");
@@ -61,6 +59,14 @@
         }
 
         id object = elements[index];
+
+        // shift values
+        for (size_t i = index + 1; i < elem_count; i++) {
+                id o = elements[i];
+                elements[i - 1] = o;
+        }
+        elem_count--;
+
         return [object autorelease];
 }
 
