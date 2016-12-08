@@ -6,27 +6,10 @@
 
 @implementation FUIApplication
 
-- (void)createWindow:(const char *)title width:(int)width height:(int)height {
-        [self createWindow:title width:width height:height x:SDL_WINDOWPOS_UNDEFINED y:SDL_WINDOWPOS_UNDEFINED];
-}
-- (void)createWindow:(const char *)title width:(int)width height:(int)height x:(int)x y:(int) y {
-        window = SDL_CreateWindow(title, x, y, width, height, SDL_WINDOW_OPENGL);
-        if (!window) {
-                printf("Could not create window:\n\t:%s", SDL_GetError());
-                return;
-        }
-
-        // surface = SDL_GetWindowSurface(window);
-        // if (!surface) {
-        //         printf("Could not create surface:\n\t:%s", SDL_GetError());
-        //         return;
-        // }
-
-        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
-        if (!renderer) {
-                printf("Count not create renderer:\n\t:%s", SDL_GetError());
-                return;
-        }
+- (FUIWindow *)createWindow:(FUIRect)aRect {
+        FUIWindow *window = [[FUIWindow alloc] initWithFrame:aRect];
+        [windows addObject:window];
+        return window;
 }
 
 - (instancetype)init {
@@ -36,6 +19,8 @@
                         printf("SDL not initialized:\n\t%s", SDL_GetError());
                         return nil;
                 }
+
+                windows = [[FUIArray alloc] init];
         }
         return self;
 }
@@ -52,10 +37,13 @@
                         }
                 }
 
-                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                SDL_RenderClear(renderer);
+                if ([windows count] == 0)
+                        goto exitloop;
 
-                SDL_RenderPresent(renderer);
+                for (size_t i = 0; i < [windows count]; i++) {
+                        FUIWindow *w = [windows objectAtIndex:i];
+                        [w render];
+                }
         }
 
         exitloop:
