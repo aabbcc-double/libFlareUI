@@ -16,3 +16,4 @@ static inline FUIRect FUIRectCreate(FUIFloat x, FUIFloat y, FUIFloat width, FUIF
         return rect;
 }
 
+static const FUIRect FUIRectZero = {.x = 0, .y = 0, .width = 0, .height = 0};

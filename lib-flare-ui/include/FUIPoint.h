@@ -11,3 +11,5 @@ static inline FUIPoint FUIPointCreate(FUIFloat x, FUIFloat y) {
         point.y = y;
         return point;
 } 
+
+static const FUIPoint FUIPointZero = {.x = 0, .y = 0};
