@@ -32,4 +32,11 @@
         
 }
 
+- (void)dealloc {
+        SDL_DestroyRenderer(sdlRenderer);
+        SDL_DestroyWindow(sdlWindow);
+
+        [super dealloc];
+}
+
 @end

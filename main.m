@@ -55,5 +55,13 @@ int main() {
 
         MU_RUN_SUITE(test_suite_FUIArray);
 
+        App *app = [[App alloc] init];
+        @autoreleasepool {
+        FUIWindow *window = [app createWindow:FUIRectCreate(0, 0, 640, 480)];
+        SDL_Delay(3000);
+        [app destroyWindow:window];
+        }
+        SDL_Delay(3000);
+
         return 0;
 }

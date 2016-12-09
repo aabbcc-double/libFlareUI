@@ -9,7 +9,15 @@
 - (FUIWindow *)createWindow:(FUIRect)aRect {
         FUIWindow *window = [[FUIWindow alloc] initWithFrame:aRect];
         [windows addObject:window];
-        return window;
+        return [window autorelease];
+}
+
+- (void)destroyWindow:(FUIWindow *)aWindow {
+        FUIWindow *w = [windows removeObject:aWindow];
+
+        if (!w) {
+                fprintf(stderr, "Removing non existing object from FUIArray");
+        }
 }
 
 - (instancetype)init {

@@ -9,6 +9,7 @@
 }
 - (instancetype)init;
 - (FUIWindow *)createWindow:(FUIRect)aRect;
+- (void)destroyWindow:(FUIWindow *)aWindow;
 - (void)start;
 
 @end
