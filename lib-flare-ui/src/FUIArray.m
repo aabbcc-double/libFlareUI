@@ -48,7 +48,7 @@
         }
 
         id object = elements[index];
-        return object;
+        return [[object retain] autorelease];
 }
 
 - (id)removeObjectAtIndex:(size_t)index {
@@ -70,8 +70,28 @@
         return [object autorelease];
 }
 
+- (id)removeObject:(id)aObject {
+        for (size_t i = 0; i < [self count]; i++) {
+                id o = [self objectAtIndex:i];
+
+                if (o == aObject) {
+                        return [self removeObjectAtIndex:i];
+                }
+        }
+
+        return nil;
+}
+
 - (size_t)count {
         return elem_count;
+}
+
+- (void)dealloc {
+        for (size_t i = 0; i < elem_count; i++)
+                [self removeObjectAtIndex:i];
+
+        free(elements);
+        [super dealloc];
 }
 
 @end
