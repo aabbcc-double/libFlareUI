@@ -5,7 +5,15 @@
 - (instancetype) initWithFrame:(FUIRect)aRect {
         self = [super initWithFrame:aRect];
         if (self) {
-                sdlWindow = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int) aRect.width, (int) aRect.height, 0);
+                int x = aRect.x;
+                int y = aRect.y;
+
+                if (x < 0)
+                        x = SDL_WINDOWPOS_CENTERED;
+                if (y < 0)
+                        y = SDL_WINDOWPOS_CENTERED;
+
+                sdlWindow = SDL_CreateWindow("", x, y, (int) aRect.width, (int) aRect.height, 0);
                 if (!sdlWindow) {
                         fprintf(stderr, "Could not create SDL window:\n\t%s", SDL_GetError());
                         return nil;

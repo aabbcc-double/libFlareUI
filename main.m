@@ -17,7 +17,7 @@ int main() {
         printf("\n");
 
         App *app = [[App alloc] init]; 
-        [app createWindow:FUIRectCreate(0, 0, 640, 480)];
+        [app createWindow:FUIRectCreate(-1, -1, 640, 480)];
         [app start];
         [app release];
 
