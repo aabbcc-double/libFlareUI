@@ -64,7 +64,25 @@
         SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
         SDL_Rect rect = SDLRectFromFUIRect(frame);
+        if (superview == nil) { /* Rootview */
+                rect.x = 0;
+                rect.y = 0;
+        } else {
+                FUIView * view = self;
+                while (!![view superview]) {
+                        view = [view superview];
+                        FUIRect superframe = [view frame];
+                        rect.x += superframe.x;
+                        rect.y += superframe.y;
+                }
+        } 
+
         SDL_RenderFillRect(renderer, &rect);
+
+        for (size_t i = 0; i < [subviews count]; i++) {
+                FUIView *view = [subviews objectAtIndex:i];
+                [view render];
+        }
 }
 
 @end
