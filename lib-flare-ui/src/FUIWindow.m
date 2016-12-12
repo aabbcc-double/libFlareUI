@@ -19,7 +19,7 @@
                         return nil;
                 }
 
-                sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_PRESENTVSYNC);
+                sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, 0);
                 if (!sdlRenderer) {
                         fprintf(stderr, "Could not create SDL renderer:\n\t%s", SDL_GetError());
                         return nil;
