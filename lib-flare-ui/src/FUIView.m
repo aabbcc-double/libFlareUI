@@ -24,6 +24,32 @@
         backgroundColor = aColor;
 }
 
+- (void)removeFromSuperview {
+        [superview removeView:self]; 
+        superview = nil;
+}
+
+- (FUIRect)frame {
+        return frame;
+}
+
+- (FUIView *)superview {
+        return superview;
+}
+
+- (void)removeView:(FUIView *)aView {
+        [subviews removeObject:aView];
+}
+
+- (void)setSuperview:(FUIView *)aView {
+        superview = aView;
+}
+
+- (void)addSubview:(FUIView *)aView {
+        [subviews addObject:aView];
+        [aView setSuperview:self];
+}
+
 - (void)render {
         const FUIWindow * const window = FUIWindowGetCurrentWindow();
         SDL_Renderer *renderer = [window internal_getSDLRenderer];
