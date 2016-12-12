@@ -32,7 +32,7 @@ cd build
 ```
 * Run cmake
 ```
-cmake ..
+CC=mulle-clang CXX=mulle-clang cmake ..
 ```
 * Run make 
 ```
