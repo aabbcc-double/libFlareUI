@@ -32,6 +32,18 @@ FUIWindow *FUIWindow__currentRendering_FUIWindow = NULL;
 - (void)render {
         FUIWindow__currentRendering_FUIWindow = self;
 
+        FUIColorComponent r, g, b, a;
+
+        r = FUIColorGetRedComponent(backgroundColor);
+        g = FUIColorGetGreenComponent(backgroundColor);
+        b = FUIColorGetBlueComponent(backgroundColor);
+        a = FUIColorGetAlphaComponent(backgroundColor);
+
+        SDL_SetRenderDrawColor(sdlRenderer, r, g, b, a);
+        SDL_RenderClear(sdlRenderer);
+
+        [super render];
+        SDL_RenderPresent(sdlRenderer);
 }
 
 - (void)dealloc {
