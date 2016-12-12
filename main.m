@@ -11,6 +11,58 @@
 
 @end
 
+@interface BouncingView : FUIView {
+        FUIPoint direction;
+}
+
+@end
+
+@implementation BouncingView
+
+- (instancetype)initWithFrame:(FUIRect)aRect {
+        self = [super initWithFrame:aRect];
+        if (self) {
+                direction = FUIPointCreate(1, 1);
+        }
+        return self;
+}
+
+- (void)render {
+        FUIRect superviewFrame = [superview frame];
+
+        if (frame.x + frame.width > superviewFrame.width)
+                direction.x = -1;
+        if (frame.y + frame.height > superviewFrame.height)
+                direction.y = -1;
+        if (frame.x < 0)
+                direction.x = 1;
+        if (frame.y < 0)
+                direction.y = 1;
+
+        frame.x += direction.x;
+        frame.y += direction.y;
+
+        [super render];
+}
+
+@end
+
+@interface GradientView : FUIView
+
+@end
+
+@implementation GradientView
+
+- (void)render {
+        FUIColorComponent red = FUIColorGetRedComponent(backgroundColor);
+        red = (red + 1) % 255;
+        backgroundColor = FUIColorCreate(0xFF, red, 0x00, 0x00);
+
+        [super render];
+}
+
+@end
+
 MU_TEST(test_FUIArray) {
         FUIArray *array = [[FUIArray alloc] init];
         mu_assert([array count] == 0, "Empty array should have 0 count");
@@ -79,6 +131,10 @@ int main() {
         App *app = [[App alloc] init];
         FUIWindow *window = [app createWindow:FUIRectCreate(0, 0, 640, 480)];
         [window setBackgroundColor:FUIColorBlue];
+
+        GradientView *view3 = [[GradientView alloc] initWithFrame:FUIRectCreate(250, 250, 250, 250)];
+        [window addSubview:view3];
+        [view3 release];
         
         FUIWindow *window2 = [app createWindow:FUIRectCreate(-1, -1, 640, 480)];
         [window2 setBackgroundColor:FUIColorRed];
@@ -88,7 +144,7 @@ int main() {
         [view setBackgroundColor:FUIColorBlue];
         [window2 addSubview:view];
         
-        FUIView *view2 = [[FUIView alloc] initWithFrame:FUIRectCreate(10, 20, 10, 20)];
+        BouncingView *view2 = [[BouncingView alloc] initWithFrame:FUIRectCreate(10, 20, 10, 20)];
         [view2 setBackgroundColor:FUIColorGreen];
         [view addSubview:view2];
 
@@ -97,6 +153,7 @@ int main() {
 
         FUIWindow *window3 = [app createWindow:FUIRectCreate(500, 400, 640, 480)];
         [window3 setBackgroundColor:FUIColorGreen];
+
         [app start];
 
         return 0;
