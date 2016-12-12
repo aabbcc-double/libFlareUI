@@ -10,3 +10,4 @@ extern const int FLARE_UI_VERSION_MINOR;
 #import "FUIRect.h"
 #import "FUIView.h"
 #import "FUIWindow.h"
+#import "FUIColor.h"

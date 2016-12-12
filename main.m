@@ -47,6 +47,26 @@ MU_TEST_SUITE(test_suite_FUIArray) {
         MU_RUN_TEST(test_FUIArray_ownership);
 }
 
+MU_TEST(test_FUIColor) {
+        FUIColor color;
+        FUIColorComponent cc;
+
+        color = FUIColorCreate(0x12, 0x34, 0x56, 0x78);
+        mu_assert(color == 0x12345678, "Color isn't valid");
+
+        cc = FUIColorGetAlphaComponent(color);
+        mu_assert(cc == 0x12, "Alpha component isn't valid");
+
+        cc = FUIColorGetRedComponent(color);
+        mu_assert(cc == 0x34, "Red component isn't valid");
+
+        cc = FUIColorGetGreenComponent(color);
+        mu_assert(cc == 0x56, "Green component isn't valid");
+
+        cc = FUIColorGetBlueComponent(color);
+        mu_assert(cc == 0x78, "Blue component isn't valid");
+}
+
 int main() {
         printf("Hello my dear library\n");
         printf("Version Major: %d\n", FLARE_UI_VERSION_MAJOR);
@@ -54,14 +74,13 @@ int main() {
         printf("\n");
 
         MU_RUN_SUITE(test_suite_FUIArray);
+        MU_RUN_TEST(test_FUIColor);
 
-        App *app = [[App alloc] init];
-        @autoreleasepool {
-        FUIWindow *window = [app createWindow:FUIRectCreate(0, 0, 640, 480)];
-        SDL_Delay(3000);
-        [app destroyWindow:window];
-        }
-        SDL_Delay(3000);
+        // App *app = [[App alloc] init];
+        // FUIWindow *window = [app createWindow:FUIRectCreate(0, 0, 640, 480)];
+        // FUIWindow *window2 = [app createWindow:FUIRectCreate(-1, -1, 640, 480)];
+        // FUIWindow *window3 = [app createWindow:FUIRectCreate(500, 400, 640, 480)];
+        // [app start];
 
         return 0;
 }
