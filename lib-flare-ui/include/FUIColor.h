@@ -27,5 +27,7 @@ static inline FUIColorComponent FUIColorGetBlueComponent(FUIColor color) {
         return (color & 0x000000FF);
 }
 
-const FUIColor FUIColorBlack = 0xFF000000;
-const FUIColor FUIColorRed = 0xFFFF0000;
+static const FUIColor FUIColorBlack = 0xFF000000;
+static const FUIColor FUIColorRed = 0xFFFF0000;
+static const FUIColor FUIColorGreen = 0xFF00FF00;
+static const FUIColor FUIColorBlue = 0xFF0000FF;
