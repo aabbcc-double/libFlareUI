@@ -38,7 +38,7 @@
         SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
         SDL_Rect rect = SDLRectFromFUIRect(frame);
-        SDL_RenderDrawRect(renderer, &rect);
+        SDL_RenderFillRect(renderer, &rect);
 }
 
 @end

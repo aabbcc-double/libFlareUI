@@ -34,10 +34,10 @@ FUIWindow *FUIWindow__currentRendering_FUIWindow = NULL;
 
         FUIColorComponent r, g, b, a;
 
-        r = FUIColorGetRedComponent(backgroundColor);
-        g = FUIColorGetGreenComponent(backgroundColor);
-        b = FUIColorGetBlueComponent(backgroundColor);
-        a = FUIColorGetAlphaComponent(backgroundColor);
+        r = FUIColorGetRedComponent(FUIColorBlack);
+        g = FUIColorGetGreenComponent(FUIColorBlack);
+        b = FUIColorGetBlueComponent(FUIColorBlack);
+        a = FUIColorGetAlphaComponent(FUIColorBlack);
 
         SDL_SetRenderDrawColor(sdlRenderer, r, g, b, a);
         SDL_RenderClear(sdlRenderer);
