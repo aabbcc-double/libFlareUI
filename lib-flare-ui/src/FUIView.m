@@ -14,7 +14,7 @@
         self = [super init];
         if (self) {
                 frame = aRect;
-                subviews = [FUIArray init];
+                subviews = [[FUIArray alloc] init];
                 backgroundColor = FUIColorBlack;
         }
         return self;
