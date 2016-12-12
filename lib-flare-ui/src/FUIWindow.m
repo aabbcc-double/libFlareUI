@@ -1,4 +1,5 @@
 #import "FUIWindow.h"
+FUIWindow *FUIWindow__currentRendering_FUIWindow = NULL;
 
 @implementation FUIWindow 
 
@@ -29,7 +30,8 @@
 }
 
 - (void)render {
-        
+        FUIWindow__currentRendering_FUIWindow = self;
+
 }
 
 - (void)dealloc {
@@ -40,3 +42,7 @@
 }
 
 @end
+
+FUIWindow * const FUIWindowGetCurrentWindow() {
+        return FUIWindow__currentRendering_FUIWindow;
+}

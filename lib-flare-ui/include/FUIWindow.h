@@ -8,3 +8,5 @@
 }
 
 @end
+
+const FUIWindow * const FUIWindowGetCurrentWindow();
