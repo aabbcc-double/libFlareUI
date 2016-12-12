@@ -76,11 +76,14 @@ int main() {
         MU_RUN_SUITE(test_suite_FUIArray);
         MU_RUN_TEST(test_FUIColor);
 
-        // App *app = [[App alloc] init];
-        // FUIWindow *window = [app createWindow:FUIRectCreate(0, 0, 640, 480)];
-        // FUIWindow *window2 = [app createWindow:FUIRectCreate(-1, -1, 640, 480)];
-        // FUIWindow *window3 = [app createWindow:FUIRectCreate(500, 400, 640, 480)];
-        // [app start];
+        App *app = [[App alloc] init];
+        FUIWindow *window = [app createWindow:FUIRectCreate(0, 0, 640, 480)];
+        [window setBackgroundColor:FUIColorBlue];
+        FUIWindow *window2 = [app createWindow:FUIRectCreate(-1, -1, 640, 480)];
+        [window2 setBackgroundColor:FUIColorRed];
+        FUIWindow *window3 = [app createWindow:FUIRectCreate(500, 400, 640, 480)];
+        [window3 setBackgroundColor:FUIColorGreen];
+        [app start];
 
         return 0;
 }
