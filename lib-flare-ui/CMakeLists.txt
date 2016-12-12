@@ -21,8 +21,13 @@ include_directories(
         find_library(SDL2 SDL2)
 # endif (APPLE)
 
-file(GLOB FLARE_UI_SOURCES
-        "${PROJECT_SOURCE_DIR}/src/*.m"
+set(FLARE_UI_SOURCES 
+        "${PROJECT_SOURCE_DIR}/src/FlareUI.m"
+        "${PROJECT_SOURCE_DIR}/src/FUIApplication.m"
+        "${PROJECT_SOURCE_DIR}/src/FUIArray.m"
+        "${PROJECT_SOURCE_DIR}/src/FUIView.m"
+        "${PROJECT_SOURCE_DIR}/src/FUIWindow.m"
+        "${PROJECT_SOURCE_DIR}/src/FUIWindow+internal.m"
 )
 
 add_library(libFlareUI SHARED "${FLARE_UI_SOURCES}") 
