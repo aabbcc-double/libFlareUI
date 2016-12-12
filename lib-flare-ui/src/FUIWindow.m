@@ -42,6 +42,8 @@ FUIWindow *FUIWindow__currentRendering_FUIWindow = NULL;
         SDL_SetRenderDrawColor(sdlRenderer, r, g, b, a);
         SDL_RenderClear(sdlRenderer);
 
+        superview = nil;
+
         [super render];
         SDL_RenderPresent(sdlRenderer);
 }
