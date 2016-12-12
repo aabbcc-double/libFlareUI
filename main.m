@@ -79,8 +79,22 @@ int main() {
         App *app = [[App alloc] init];
         FUIWindow *window = [app createWindow:FUIRectCreate(0, 0, 640, 480)];
         [window setBackgroundColor:FUIColorBlue];
+        
         FUIWindow *window2 = [app createWindow:FUIRectCreate(-1, -1, 640, 480)];
         [window2 setBackgroundColor:FUIColorRed];
+
+        FUIView *view;
+        view = [[FUIView alloc] initWithFrame:FUIRectCreate(100, 200, 100, 200)];
+        [view setBackgroundColor:FUIColorBlue];
+        [window2 addSubview:view];
+        
+        FUIView *view2 = [[FUIView alloc] initWithFrame:FUIRectCreate(10, 20, 10, 20)];
+        [view2 setBackgroundColor:FUIColorGreen];
+        [view addSubview:view2];
+
+        [view release];
+        [view2 release]; 
+
         FUIWindow *window3 = [app createWindow:FUIRectCreate(500, 400, 640, 480)];
         [window3 setBackgroundColor:FUIColorGreen];
         [app start];
