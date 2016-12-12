@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.2)
 project(libFlareUI)
 
 set(FLARE_UI_VERSION_MAJOR 1)
@@ -21,13 +21,8 @@ include_directories(
         find_library(SDL2 SDL2)
 # endif (APPLE)
 
-set(FLARE_UI_SOURCES 
-        "${PROJECT_SOURCE_DIR}/src/FlareUI.m"
-        "${PROJECT_SOURCE_DIR}/src/FUIApplication.m"
-        "${PROJECT_SOURCE_DIR}/src/FUIArray.m"
-        "${PROJECT_SOURCE_DIR}/src/FUIView.m"
-        "${PROJECT_SOURCE_DIR}/src/FUIWindow.m"
-        "${PROJECT_SOURCE_DIR}/src/FUIWindow+internal.m"
+file(GLOB FLARE_UI_SOURCES
+        "${PROJECT_SOURCE_DIR}/src/*.m"
 )
 
 add_library(libFlareUI SHARED "${FLARE_UI_SOURCES}") 
