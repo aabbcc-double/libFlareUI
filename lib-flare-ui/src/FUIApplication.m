@@ -52,6 +52,8 @@
                         FUIWindow *w = [windows objectAtIndex:i];
                         [w render];
                 }
+                
+                SDL_Delay(1000 / 30);
         }
 
         exitloop:
